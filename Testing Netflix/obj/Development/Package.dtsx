@@ -1,0 +1,2081 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/24/2024 4:10:42 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ROTISBUBU"
+  DTS:CreatorName="ROTISBUBU\asus1"
+  DTS:DTSID="{C07FC238-FF92-44D4-8B4B-26FC964B5A47}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{809750CA-7727-4FFA-B63D-49CE79BC19ED}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2251597D-8126-4832-BDFB-32B4935E7438}"
+      DTS:ObjectName="(localdb)\MSSQLLocalDB.netflixdb">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=(localdb)\MSSQLLocalDB;User ID=;Initial Catalog=netflixdb;Provider=MSOLEDBSQL.1;Persist Security Info=False;Integrated Security=SSPI;Initial File Name=;Server SPN=;Authentication=;Access Token=;Application Name=SSIS-Package-{2251597D-8126-4832-BDFB-32B4935E7438}(localdb)\MSSQLLocalDB.netflixdb;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{C95004C4-CF10-44A2-824E-BC921FF2D19C}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\OneDrive\OneDrive - Bina Nusantara\Documents\SEM 5\0. IT DIV\PROJECT ADVANCE\3_DATA ANALYST_FLAVIA LOUIS_2602094080\netflix_titles.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\netflix_titles"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B7937DD8-A133-4D30-BEB1-90B1C42759EA}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="netflix_titles"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\netflix_titles\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">netflix_titles$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\netflix_titles\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[duration_minutes]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[duration_minutes]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[duration_minutes]"
+                      name="duration_minutes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[duration_seasons]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[duration_seasons]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[duration_seasons]"
+                      name="duration_seasons"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[type]"
+                      length="255"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[type]"
+                      name="type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[title]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[title]"
+                      length="255"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[title]"
+                      name="title"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[date_added]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_added]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[date_added]"
+                      name="date_added"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[release_year]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[release_year]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[release_year]"
+                      name="release_year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[rating]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[rating]"
+                      length="255"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[rating]"
+                      name="rating"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[description]"
+                      length="255"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[description]"
+                      name="description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[show_id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[show_id]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[show_id]"
+                      name="show_id"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[duration_minutes]"
+                      dataType="r8"
+                      name="duration_minutes" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[duration_seasons]"
+                      dataType="r8"
+                      name="duration_seasons" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[type]"
+                      dataType="wstr"
+                      length="255"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[title]"
+                      dataType="wstr"
+                      length="255"
+                      name="title" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_added]"
+                      dataType="date"
+                      name="date_added" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[release_year]"
+                      dataType="r8"
+                      name="release_year" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[rating]"
+                      dataType="wstr"
+                      length="255"
+                      name="rating" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[description]"
+                      dataType="wstr"
+                      length="255"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].ExternalColumns[show_id]"
+                      dataType="r8"
+                      name="show_id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[duration_minutes]"
+                      dataType="r8"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[duration_minutes]"
+                      name="duration_minutes" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[duration_seasons]"
+                      dataType="r8"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[duration_seasons]"
+                      name="duration_seasons" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[type]"
+                      name="type" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[title]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[title]"
+                      name="title" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[date_added]"
+                      dataType="date"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[date_added]"
+                      name="date_added" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[release_year]"
+                      dataType="r8"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[release_year]"
+                      name="release_year" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[rating]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[rating]"
+                      name="rating" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[description]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[description]"
+                      name="description" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[show_id]"
+                      dataType="r8"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[show_id]"
+                      name="show_id" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\netflix_titles\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[netflix_titles]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\netflix_titles\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[duration_minutes]"
+                      cachedDataType="r8"
+                      cachedName="duration_minutes"
+                      externalMetadataColumnId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[duration_minutes]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[duration_minutes]" />
+                    <inputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[duration_seasons]"
+                      cachedDataType="r8"
+                      cachedName="duration_seasons"
+                      externalMetadataColumnId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[duration_seasons]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[duration_seasons]" />
+                    <inputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="type"
+                      externalMetadataColumnId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[type]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[type]" />
+                    <inputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[title]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="title"
+                      externalMetadataColumnId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[title]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[title]" />
+                    <inputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[date_added]"
+                      cachedDataType="date"
+                      cachedName="date_added"
+                      externalMetadataColumnId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date_added]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[date_added]" />
+                    <inputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[release_year]"
+                      cachedDataType="r8"
+                      cachedName="release_year"
+                      externalMetadataColumnId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[release_year]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[release_year]" />
+                    <inputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rating]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="rating"
+                      externalMetadataColumnId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rating]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[rating]" />
+                    <inputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[description]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="description"
+                      externalMetadataColumnId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[description]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[description]" />
+                    <inputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[show_id]"
+                      cachedDataType="r8"
+                      cachedName="show_id"
+                      externalMetadataColumnId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[show_id]"
+                      lineageId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output].Columns[show_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[duration_minutes]"
+                      dataType="r8"
+                      name="duration_minutes" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[duration_seasons]"
+                      dataType="r8"
+                      name="duration_seasons" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[type]"
+                      dataType="wstr"
+                      length="255"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[title]"
+                      dataType="wstr"
+                      length="255"
+                      name="title" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date_added]"
+                      dataType="dbTimeStamp"
+                      name="date_added" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[release_year]"
+                      dataType="r8"
+                      name="release_year" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rating]"
+                      dataType="wstr"
+                      length="255"
+                      name="rating" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[description]"
+                      dataType="wstr"
+                      length="255"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[show_id]"
+                      dataType="r8"
+                      name="show_id" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\netflix_titles\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\netflix_titles\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\netflix_titles.Paths[Excel Source Output]"
+              endId="Package\netflix_titles\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\netflix_titles\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\netflix_titles_cast"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9568748d-abbf-40f7-8165-6d16ea1dbbfb}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="netflix_titles_cast"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\netflix_titles_cast\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">netflix_titles_cast$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\netflix_titles_cast\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output].Columns[show_id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output].ExternalColumns[show_id]"
+                      lineageId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output].Columns[show_id]"
+                      name="show_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output].Columns[cast]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output].ExternalColumns[cast]"
+                      length="255"
+                      lineageId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output].Columns[cast]"
+                      name="cast"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output].ExternalColumns[show_id]"
+                      dataType="r8"
+                      name="show_id" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output].ExternalColumns[cast]"
+                      dataType="wstr"
+                      length="255"
+                      name="cast" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Error Output].Columns[cast]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Error Output].Columns[cast]"
+                      name="cast" />
+                    <outputColumn
+                      refId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Error Output].Columns[show_id]"
+                      dataType="r8"
+                      lineageId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Error Output].Columns[show_id]"
+                      name="show_id" />
+                    <outputColumn
+                      refId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\netflix_titles_cast\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[netflix_titles_cast]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\netflix_titles_cast\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\netflix_titles_cast\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\netflix_titles_cast\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[show_id]"
+                      cachedDataType="r8"
+                      cachedName="show_id"
+                      externalMetadataColumnId="Package\netflix_titles_cast\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[show_id]"
+                      lineageId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output].Columns[show_id]" />
+                    <inputColumn
+                      refId="Package\netflix_titles_cast\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[cast]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="cast"
+                      externalMetadataColumnId="Package\netflix_titles_cast\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cast]"
+                      lineageId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output].Columns[cast]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_cast\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[show_id]"
+                      dataType="r8"
+                      name="show_id" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_cast\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cast]"
+                      dataType="wstr"
+                      length="255"
+                      name="cast" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\netflix_titles_cast\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\netflix_titles_cast\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_cast\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_cast\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\netflix_titles_cast\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_cast\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\netflix_titles_cast.Paths[Excel Source Output]"
+              endId="Package\netflix_titles_cast\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\netflix_titles_cast\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\netflix_titles_category"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2d7799d1-ded0-4470-b985-1870a77005b7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="netflix_titles_category"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\netflix_titles_category\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">netflix_titles_category$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\netflix_titles_category\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output].Columns[show_id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output].ExternalColumns[show_id]"
+                      lineageId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output].Columns[show_id]"
+                      name="show_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output].Columns[listed_in]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output].ExternalColumns[listed_in]"
+                      length="255"
+                      lineageId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output].Columns[listed_in]"
+                      name="listed_in"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output].ExternalColumns[show_id]"
+                      dataType="r8"
+                      name="show_id" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output].ExternalColumns[listed_in]"
+                      dataType="wstr"
+                      length="255"
+                      name="listed_in" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Error Output].Columns[listed_in]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Error Output].Columns[listed_in]"
+                      name="listed_in" />
+                    <outputColumn
+                      refId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Error Output].Columns[show_id]"
+                      dataType="r8"
+                      lineageId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Error Output].Columns[show_id]"
+                      name="show_id" />
+                    <outputColumn
+                      refId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\netflix_titles_category\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[netflix_titles_category]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\netflix_titles_category\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\netflix_titles_category\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\netflix_titles_category\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[show_id]"
+                      cachedDataType="r8"
+                      cachedName="show_id"
+                      externalMetadataColumnId="Package\netflix_titles_category\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[show_id]"
+                      lineageId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output].Columns[show_id]" />
+                    <inputColumn
+                      refId="Package\netflix_titles_category\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[listed_in]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="listed_in"
+                      externalMetadataColumnId="Package\netflix_titles_category\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[listed_in]"
+                      lineageId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output].Columns[listed_in]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_category\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[show_id]"
+                      dataType="r8"
+                      name="show_id" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_category\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[listed_in]"
+                      dataType="wstr"
+                      length="255"
+                      name="listed_in" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\netflix_titles_category\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\netflix_titles_category\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_category\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_category\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\netflix_titles_category\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_category\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\netflix_titles_category.Paths[Excel Source Output]"
+              endId="Package\netflix_titles_category\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\netflix_titles_category\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\netflix_titles_countries"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{640c512c-e65a-497a-9b86-decd2aa83024}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="netflix_titles_countries"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\netflix_titles_countries\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">netflix_titles_countries$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\netflix_titles_countries\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output].Columns[show_id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output].ExternalColumns[show_id]"
+                      lineageId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output].Columns[show_id]"
+                      name="show_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output].Columns[country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output].ExternalColumns[country]"
+                      length="255"
+                      lineageId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output].Columns[country]"
+                      name="country"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output].ExternalColumns[show_id]"
+                      dataType="r8"
+                      name="show_id" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output].ExternalColumns[country]"
+                      dataType="wstr"
+                      length="255"
+                      name="country" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Error Output].Columns[country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Error Output].Columns[country]"
+                      name="country" />
+                    <outputColumn
+                      refId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Error Output].Columns[show_id]"
+                      dataType="r8"
+                      lineageId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Error Output].Columns[show_id]"
+                      name="show_id" />
+                    <outputColumn
+                      refId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\netflix_titles_countries\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[netflix_titles_countries]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\netflix_titles_countries\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\netflix_titles_countries\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\netflix_titles_countries\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[show_id]"
+                      cachedDataType="r8"
+                      cachedName="show_id"
+                      externalMetadataColumnId="Package\netflix_titles_countries\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[show_id]"
+                      lineageId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output].Columns[show_id]" />
+                    <inputColumn
+                      refId="Package\netflix_titles_countries\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="country"
+                      externalMetadataColumnId="Package\netflix_titles_countries\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      lineageId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output].Columns[country]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_countries\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[show_id]"
+                      dataType="r8"
+                      name="show_id" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_countries\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      dataType="wstr"
+                      length="255"
+                      name="country" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\netflix_titles_countries\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\netflix_titles_countries\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_countries\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_countries\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\netflix_titles_countries\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_countries\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\netflix_titles_countries.Paths[Excel Source Output]"
+              endId="Package\netflix_titles_countries\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\netflix_titles_countries\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\netflix_titles_directors"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{80bd104a-1b27-4ce3-820a-61f3f90f1d5e}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="netflix_titles_directors"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\netflix_titles_directors\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">netflix_titles_directors$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\netflix_titles_directors\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output].Columns[show_id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output].ExternalColumns[show_id]"
+                      lineageId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output].Columns[show_id]"
+                      name="show_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output].Columns[director]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output].ExternalColumns[director]"
+                      length="255"
+                      lineageId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output].Columns[director]"
+                      name="director"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output].ExternalColumns[show_id]"
+                      dataType="r8"
+                      name="show_id" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output].ExternalColumns[director]"
+                      dataType="wstr"
+                      length="255"
+                      name="director" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Error Output].Columns[director]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Error Output].Columns[director]"
+                      name="director" />
+                    <outputColumn
+                      refId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Error Output].Columns[show_id]"
+                      dataType="r8"
+                      lineageId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Error Output].Columns[show_id]"
+                      name="show_id" />
+                    <outputColumn
+                      refId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\netflix_titles_directors\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[netflix_titles_directors]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\netflix_titles_directors\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.netflixdb]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\netflix_titles_directors\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\netflix_titles_directors\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[show_id]"
+                      cachedDataType="r8"
+                      cachedName="show_id"
+                      externalMetadataColumnId="Package\netflix_titles_directors\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[show_id]"
+                      lineageId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output].Columns[show_id]" />
+                    <inputColumn
+                      refId="Package\netflix_titles_directors\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[director]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="director"
+                      externalMetadataColumnId="Package\netflix_titles_directors\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[director]"
+                      lineageId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output].Columns[director]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_directors\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[show_id]"
+                      dataType="r8"
+                      name="show_id" />
+                    <externalMetadataColumn
+                      refId="Package\netflix_titles_directors\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[director]"
+                      dataType="wstr"
+                      length="255"
+                      name="director" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\netflix_titles_directors\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\netflix_titles_directors\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\netflix_titles_directors\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_directors\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\netflix_titles_directors\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\netflix_titles_directors\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\netflix_titles_directors.Paths[Excel Source Output]"
+              endId="Package\netflix_titles_directors\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\netflix_titles_directors\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{E200A1D1-AA28-4C3A-ABE7-F317DBA3EE9D}"
+      DTS:From="Package\netflix_titles"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\netflix_titles_directors" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{3E4352FD-3921-4133-8450-9A0DABC3483D}"
+      DTS:From="Package\netflix_titles_directors"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\netflix_titles_cast" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{BA7A3326-4C90-47A7-BF23-A5031EF49103}"
+      DTS:From="Package\netflix_titles_cast"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\netflix_titles_category" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{A51AC9DE-B59D-4CA8-BE82-C2679C3B5E96}"
+      DTS:From="Package\netflix_titles_category"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\netflix_titles_countries" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="132.8,41.6"
+          Id="Package\netflix_titles"
+          TopLeft="108.333327414261,31.1999997830391" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\netflix_titles_directors"
+          TopLeft="89.166661794815,110.2666666064" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="176.549994604538,72.7999997830391">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.4666668233606"
+              Start="0,0"
+              End="0,29.9666668233606">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.9666668233606" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\netflix_titles_cast"
+          TopLeft="102.499994399647,192.80000007232" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="179.833328097231,151.8666666064">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.9333334659205"
+              Start="0,0"
+              End="0,33.4333334659205">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.4333334659205" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\netflix_titles_category"
+          TopLeft="92.499994946023,277.066666859521" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="181.499994672835,234.40000007232">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.6666667872005"
+              Start="0,0"
+              End="0,35.1666667872005">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.1666667872005" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\netflix_titles_countries"
+          TopLeft="94.166661521627,362.200000307361" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="183.133328233825,318.666666859521">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.5333334478404"
+              Start="0,0"
+              End="0,36.0333334478404">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.0333334478404" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\netflix_titles">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\netflix_titles\Excel Source"
+          TopLeft="204.999988799294,22.5333331766393" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\netflix_titles\OLE DB Destination"
+          TopLeft="196.666655921274,125.666665792796" />
+        <EdgeLayout
+          Id="Package\netflix_titles.Paths[Excel Source Output]"
+          TopLeft="278.633322360284,64.1333331766393">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.533332616157"
+              Start="0,0"
+              End="0,54.033332616157">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.033332616157" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\netflix_titles\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\netflix_titles\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\netflix_titles_directors">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\netflix_titles_directors\OLE DB Destination"
+          TopLeft="196.666655921274,125.666665792796" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\netflix_titles_directors\Excel Source"
+          TopLeft="204.999988799294,22.5333331766393" />
+        <EdgeLayout
+          Id="Package\netflix_titles_directors.Paths[Excel Source Output]"
+          TopLeft="278.633322360284,64.1333331766393">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.5333326161567"
+              Start="0,0"
+              End="0,54.0333326161567">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.0333326161567" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\netflix_titles_directors\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\netflix_titles_directors\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\netflix_titles_cast">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\netflix_titles_cast\OLE DB Destination"
+          TopLeft="196.666655921274,125.666665792796" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\netflix_titles_cast\Excel Source"
+          TopLeft="204.999988799294,22.5333331766393" />
+        <EdgeLayout
+          Id="Package\netflix_titles_cast.Paths[Excel Source Output]"
+          TopLeft="278.633322360284,64.1333331766393">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.5333326161567"
+              Start="0,0"
+              End="0,54.0333326161567">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.0333326161567" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\netflix_titles_cast\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\netflix_titles_cast\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\netflix_titles_category">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\netflix_titles_category\OLE DB Destination"
+          TopLeft="196.666655921274,125.666665792796" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\netflix_titles_category\Excel Source"
+          TopLeft="204.999988799294,22.5333331766393" />
+        <EdgeLayout
+          Id="Package\netflix_titles_category.Paths[Excel Source Output]"
+          TopLeft="278.633322360284,64.1333331766393">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.5333326161567"
+              Start="0,0"
+              End="0,54.0333326161567">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.0333326161567" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\netflix_titles_category\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\netflix_titles_category\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\netflix_titles_countries">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\netflix_titles_countries\OLE DB Destination"
+          TopLeft="196.666655921274,125.666665792796" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\netflix_titles_countries\Excel Source"
+          TopLeft="204.999988799294,22.5333331766393" />
+        <EdgeLayout
+          Id="Package\netflix_titles_countries.Paths[Excel Source Output]"
+          TopLeft="278.633322360284,64.1333331766393">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.5333326161567"
+              Start="0,0"
+              End="0,54.0333326161567">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.0333326161567" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\netflix_titles_countries\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\netflix_titles_countries\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
